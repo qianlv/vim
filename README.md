@@ -6,9 +6,9 @@ cd ~/.vim
   
 if Git versions > 1.6.5  
 git clone --recursive git@github.com:qianlv/vim ./  
-older Git versions
+older Git versions  
 git clone git@github.com:qianlv/vim ./  
-git submodule update --init --recursive
+git submodule update --init --recursive  
   
 cp ~/.vimrc vimrc.ba  
 cp vimrc ~/.vimrc  
