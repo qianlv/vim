@@ -3,8 +3,12 @@ vim配置, 使用pathogen进行插件管理
 
 ## 配置
 cd ~/.vim  
-git clone git@github.com:qianlv/vim.git  
-cp ~/.vimrc vimrc.bak  
+git clone --recursive git@github.com:qianlv/vim ./  
+或是
+git clone git@github.com:qianlv/vim ./  
+git submodule update --init --recursive
+
+cp ~/.vimrc vimrc.ba  
 cp vimrc ~/.vimrc  
 
 ## 安装插件
