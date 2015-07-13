@@ -277,8 +277,8 @@ Helptags
 """"""""""""""""""""""""""""""
 " flake8
 """"""""""""""""""""""""""""""
-A tip might be to run the Flake8 check every time you write a Python file, to
-enable this.
+"A tip might be to run the Flake8 check 
+"every time you write a Python file, to enable this.
 autocmd BufWritePost *.py call Flake8()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
