@@ -186,6 +186,7 @@ set smartindent
 """"""""""""""""""""""""""""""
 " Encoding
 """"""""""""""""""""""""""""""
+scriptencoding=utf-8 " :w ++enc=utf-8 to solve conversion error
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,cp936,latin1
@@ -279,6 +280,7 @@ Helptags
 """"""""""""""""""""""""""""""
 "A tip might be to run the Flake8 check 
 "every time you write a Python file, to enable this.
+autocmd FileType python map <buffer> <F3> :call Flake8()<CR>
 autocmd BufWritePost *.py call Flake8()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -374,4 +376,3 @@ function! FuncBufReadPost()
     call FuncCsAdd()
     call FuncTags()
 endfunction
-
