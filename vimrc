@@ -207,6 +207,7 @@ nmap <SPACE> /
 
 cmap svn SVN
 cmap w!! w !sudo tee %
+cmap w8 w ++enc=utf-8
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AutoCmd
@@ -282,6 +283,15 @@ Helptags
 "every time you write a Python file, to enable this.
 "autocmd FileType python map <buffer> <F3> :call Flake8()<CR>
 autocmd BufWritePost *.py call Flake8()
+" fix windows location
+let g:flake8_quickfix_location="topleft"
+
+" the height of quick fix window
+" let g:flake8_quickfix_height=7
+
+" show marks in the file 
+"let g:flake8_show_in_file=0  " don't show (default)
+let g:flake8_show_in_file=1  " show
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
