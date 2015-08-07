@@ -277,7 +277,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 Helptags
 """"""""""""""""""""""""""""""
-" flake8
+" flake8 
 """"""""""""""""""""""""""""""
 "A tip might be to run the Flake8 check 
 "every time you write a Python file, to enable this.
@@ -292,6 +292,11 @@ let g:flake8_quickfix_location="topleft"
 " show marks in the file 
 "let g:flake8_show_in_file=0  " don't show (default)
 let g:flake8_show_in_file=1  " show
+
+"Some other options can use ~/.config/flake8 to config
+"for example: show-source and so on.
+"You can look up other options through 'flake8 -h'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
