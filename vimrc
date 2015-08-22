@@ -117,7 +117,7 @@ syntax on
 "set autoread
 
 " save when changing buffer
-set autowrite
+set autowriteall
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Interface & Display
