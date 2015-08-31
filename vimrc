@@ -117,7 +117,7 @@ syntax on
 "set autoread
 
 " save when changing buffer
-set autowrite
+set autowriteall
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Interface & Display
@@ -281,7 +281,7 @@ Helptags
 """"""""""""""""""""""""""""""
 "A tip might be to run the Flake8 check 
 "every time you write a Python file, to enable this.
-"autocmd FileType python map <buffer> <F3> :call Flake8()<CR>
+"autocmd FileType python map <buffer> <F8> :call Flake8()<CR>
 autocmd BufWritePost *.py call Flake8()
 " fix windows location
 let g:flake8_quickfix_location="topleft"
@@ -296,6 +296,14 @@ let g:flake8_show_in_file=1  " show
 "Some other options can use ~/.config/flake8 to config
 "for example: show-source and so on.
 "You can look up other options through 'flake8 -h'
+
+""""""""""""""""""""""""""""""
+" vim-airline
+""""""""""""""""""""""""""""""
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
