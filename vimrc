@@ -117,7 +117,7 @@ syntax on
 "set autoread
 
 " save when changing buffer
-set autowriteall
+set autowrite
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Interface & Display
@@ -208,6 +208,8 @@ nmap <SPACE> /
 cmap svn SVN
 cmap w!! w !sudo tee %
 cmap w8 w ++enc=utf-8
+" 0 -> 1 -> 2 -> 3
+nmap rn <esc>yiwjP<C-a>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AutoCmd
@@ -276,38 +278,18 @@ let Tlist_Use_Right_Window = 1
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 Helptags
-""""""""""""""""""""""""""""""
-" flake8 
-""""""""""""""""""""""""""""""
-"A tip might be to run the Flake8 check 
-"every time you write a Python file, to enable this.
-"autocmd FileType python map <buffer> <F8> :call Flake8()<CR>
-autocmd BufWritePost *.py call Flake8()
-" fix windows location
-let g:flake8_quickfix_location="topleft"
-
-" the height of quick fix window
-" let g:flake8_quickfix_height=7
-
-" show marks in the file 
-"let g:flake8_show_in_file=0  " don't show (default)
-let g:flake8_show_in_file=1  " show
-
-"Some other options can use ~/.config/flake8 to config
-"for example: show-source and so on.
-"You can look up other options through 'flake8 -h'
 
 """"""""""""""""""""""""""""""
 " vim-airline
 """"""""""""""""""""""""""""""
 " set color
-set t_Co=256  
+" set t_Co=256  
 " set status line
  set laststatus=2
 " enable powerline-fonts
 "let g:airline_powerline_fonts = 1
 " enable tabline
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 " set left separator
 let g:airline#extensions#tabline#left_sep = ' '
 " set left separator which are not editting
@@ -316,6 +298,23 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 " set theme
 let g:airline_theme='wombat'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['pylint', 'flake8']
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <C-w>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
