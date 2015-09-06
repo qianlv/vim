@@ -283,9 +283,9 @@ Helptags
 " vim-airline
 """"""""""""""""""""""""""""""
 " set color
-" set t_Co=256  
+set t_Co=256  
 " set status line
- set laststatus=2
+set laststatus=2
 " enable powerline-fonts
 "let g:airline_powerline_fonts = 1
 " enable tabline
