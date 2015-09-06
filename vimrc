@@ -113,6 +113,9 @@ colorscheme desert
 " switch syntax highlighting on
 syntax on
 
+" enable all Python syntax highlighting features
+let python_highlight_all = 1
+
 " Set to auto read when a file is changed from the outside
 "set autoread
 
@@ -182,6 +185,9 @@ set autoindent
 
 " Smart indent
 set smartindent
+
+" show a visual line under the cursor's current line 
+set cursorline
 
 """"""""""""""""""""""""""""""
 " Encoding
