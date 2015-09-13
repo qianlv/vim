@@ -1,99 +1,9 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer zhaoguangyu <zhaoguangyu@126.com>
-" Version 1.0
-" Last Change 27/11/09 13:40:00
-"
-" 我的vimrc，搞了一个下午，终于搞好了，拿出来晒晒，大侠们砖下留情啊^_^
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 插件详细说明和配置参考 vim_scripts.txt
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ChangeLog:
-" 
-"=========================================================================================================
-" 2011年 05月 07日 星期六 14:39:20 CST
-"---------------------------------------------------------------------------------------------------------
-" 添加几个常用插件
-" 1. taglist                    Source code browser
-"   :Tlist
-"
-" 2. NERD_tree                  A tree explorer plugin for navigating the filesystem
-"   :NERDTree
-"
-" 3. cvim                       Write and run programs. Insert statements, idioms, comments etc
-"   http://lug.fh-swf.de/vim/vim-c/c-hotkeys.pdf 
-"
-" 4. nerdcommenter              A plugin that allows for easy commenting of code for many filetypes
-"   [count]<leader>cc       |NERDComComment|        Comment out the current line or text selected in visual mode. 
-"   [count]<leader>cn       |NERDComNestedComment|  Same as <leader>cc but forces nesting. 
-"   [count]<leader>c<space> |NERDComToggleComment|  Toggles the comment state of the selected line(s).
-"                                                   If the topmost selected line is commented,
-"                                                   all selected lines are uncommented and vice versa. 
-"   [count]<leader>cm       |NERDComMinimalComment| Comments the given lines using only one set of multipart delimiters. 
-"   [count]<leader>ci       |NERDComInvertComment|  Toggles the comment state of the selected line(s) individually. 
-"   [count]<leader>cs       |NERDComSexyComment|    Comments out the selected lines ``sexily'' 
-"   [count]<leader>cy       |NERDComYankComment|    Same as <leader>cc except that the commented line(s) are yanked first. 
-"   <leader>c$              |NERDComEOLComment|     Comments the current line from the cursor to the end of line. 
-"   <leader>cA              |NERDComAppendComment|  Adds comment delimiters to the end of line and goes into insert mode between them. 
-"                           |NERDComInsertComment|  Adds comment delimiters at the current cursor position and inserts between.
-"                                                   Disabled by default. 
-"   <leader>ca              |NERDComAltDelim|       Switches to the alternative set of delimiters. 
-"   [count]<leader>cl
-"   [count]<leader>cb       |NERDComAlignedComment| Same as |NERDComComment| except that the delimiters are aligned down the left side
-"                                                   (<leader>cl) or both sides (<leader>cb). 
-"   [count]<leader>cu       |NERDComUncommentLine|  Uncomments the selected line(s). 
-"
-" 5. OmniCppComplete            C/C++ omni-completion with ctags database 
-"   :help omnicppcomplete and please read the installation paragraph. 
-"
-" 6. vcscommand                 CVS/SVN/SVK/git/hg/bzr integration plugin
-"
-" 7. a.vim                      Alternate Files quickly (.c --> .h etc)
-"   :A              switches to the header file corresponding to the current file being edited (or vise versa) 
-"   :AS             splits and switches 
-"   :AV             vertical splits and switches 
-"   :AT             new tab and switches 
-"   :AN             cycles through matches 
-"   :IH             switches to file under cursor 
-"   :IHS            splits and switches 
-"   :IHV            vertical splits and switches 
-"   :IHT            new tab and switches 
-"   :IHN            cycles through matches 
-"   <Leader>ih      switches to file under cursor 
-"   <Leader>is      switches to the alternate file of file under cursor (e.g. on  <foo.h> switches to foo.cpp) 
-"   <Leader>ihn     cycles through matches 
-"
-" 8. grep.vim                   Grep search tools integration with Vim
-"   :Grep          - Search for the specified pattern in the specified files 
-"   :GrepAdd       - Same as ":Grep" but adds the results to the current results 
-"   :Rgrep         - Run recursive grep 
-"   :RgrepAdd      - Same as ":Rgrep" but adds the results to the current results 
-"   :GrepBuffer    - Search for a pattern on all open buffers 
-"   :GrepBufferAdd - Same as ":GrepBuffer" but adds the results to the current results 
-"   :Bgrep         - Same as :GrepBuffer 
-"   :BgrepAdd      - Same as :GrepBufferAdd 
-"   :GrepArgs      - Search for a pattern on all the Vim argument filenames (:args) 
-"   :GrepArgsAdd   - Same as ":GrepArgs" but adds the results to the current results 
-"   :Fgrep         - Run fgrep 
-"   :FgrepAdd      - Same as ":Fgrep" but adds the results to the current results 
-"   :Rfgrep        - Run recursive fgrep 
-"   :RfgrepAdd     - Same as ":Rfgrep" but adds the results to the current results 
-"   :Egrep         - Run egrep 
-"   :EgrepAdd      - Same as ":Egrep" but adds the results to the current results 
-"   :Regrep        - Run recursive egrep 
-"   :RegrepAdd     - Same as ":Regrep" but adds the results to the current results 
-"   :Agrep         - Run agrep 
-"   :AgrepAdd      - Same as ":Agrep" but adds the results to the current results 
-"   :Ragrep        - Run recursive agrep 
-"   :RagrepAdd     - Same as ":Ragrep" but adds the results to the current results 
-"=========================================================================================================
-" 2011年 05月 07日 星期六 14:39:20 CST
-"---------------------------------------------------------------------------------------------------------
-" 参考另一个号称“屎上最强大vimrc”的文件重新排版了一下，添加了几个set
-" 参考: http://amix.dk/vim/vimrc.html
-"=========================================================================================================
-
+""""""""""""""""""""""""""""""
+" Pathogen
+""""""""""""""""""""""""""""""
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
+Helptags
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
@@ -108,13 +18,18 @@ set history=700
 filetype plugin on
 filetype indent on
 
-colorscheme desert
 
 " switch syntax highlighting on
 syntax on
+" set color themes
+" colorscheme desert
+syntax enable
+set background=light
+colorscheme solarized
+
 
 " enable all Python syntax highlighting features
-let python_highlight_all = 1
+" let python_highlight_all = 1
 
 " Set to auto read when a file is changed from the outside
 "set autoread
@@ -216,6 +131,8 @@ cmap w!! w !sudo tee %
 cmap w8 w ++enc=utf-8
 " 0 -> 1 -> 2 -> 3
 nmap rn <esc>yiwjP<C-a>
+" external command's results displays in new windows
+" cmap nx! new | 0read 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AutoCmd
@@ -278,12 +195,6 @@ let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
 
-""""""""""""""""""""""""""""""
-" Pathogen
-""""""""""""""""""""""""""""""
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-Helptags
 
 """"""""""""""""""""""""""""""
 " vim-airline
