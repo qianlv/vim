@@ -28,7 +28,7 @@ older Git versions
 
 ## 升级全部插件
 
-    git submodule foreache 'git checkout master && git pull'  
+    git submodule foreach 'git checkout master && git pull'  
 
 ## 删除插件
 
