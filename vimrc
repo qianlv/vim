@@ -22,10 +22,10 @@ filetype indent on
 " switch syntax highlighting on
 syntax on
 " set color themes
-" colorscheme desert
-syntax enable
-set background=light
-colorscheme solarized
+colorscheme desert
+" syntax enable
+" set background=light
+" colorscheme solarized
 
 
 " enable all Python syntax highlighting features
@@ -142,6 +142,11 @@ nmap rn <esc>yiwjP<C-a>
 " external command's results displays in new windows
 " cmap nx! new | 0read 
 
+""""""""""""""""""""""""""""""
+" Tagbar
+""""""""""""""""""""""""""""""
+nmap <leader>t :TagbarToggle<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AutoCmd
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -194,15 +199,6 @@ nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
 let NERDChristmasTree = 1
 let NERDTreeWinPos = "left"
 
-""""""""""""""""""""""""""""""
-" Tlist
-""""""""""""""""""""""""""""""
-"let Tlist_Auto_Open = 1
-let Tlist_Auto_Update = 1
-let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Right_Window = 1
-
 
 """"""""""""""""""""""""""""""
 " vim-airline
@@ -250,6 +246,19 @@ nmap <C-w>pl SyntasticCheck <pylint>
 " let g:vim_markdown_math=1
 " Highlight YAML frontmatter as used by Jekyll:
 let g:vim_markdown_frontmatter=1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ctrlp
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Change the default mapping and the default command to invoke CtrlP:
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+" Exclude files and directories using Vim's `wildignore` and CtrlP's own `g:ctrlp_custom_ignore`:
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+" set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
