@@ -4,9 +4,6 @@
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = git@github.com:scrooloose/nerdtree.git
-[submodule "bundle/taglist"]
-	path = bundle/taglist
-	url = git@github.com:vim-scripts/taglist.vim.git
 [submodule "bundle/c-vim"]
 	path = bundle/c-vim
 	url = git@github.com:vim-scripts/c.vim.git
@@ -49,3 +46,9 @@
 [submodule "bundle/vim-colors-solarized"]
 	path = bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/ctrlp"]
+	path = bundle/ctrlp
+	url = git@github.com:kien/ctrlp.vim.git
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url = git@github.com:majutsushi/tagbar.git
