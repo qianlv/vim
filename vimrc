@@ -104,6 +104,14 @@ set smartindent
 " show a visual line under the cursor's current line 
 set cursorline
 
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+hi IndentGuidesOdd  ctermbg=white
+hi IndentGuidesEven ctermbg=lightgrey
+let g:indent_guides_guide_size = 1 
+
+
 """"""""""""""""""""""""""""""
 " Encoding
 """"""""""""""""""""""""""""""
@@ -234,6 +242,14 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 nnoremap <C-w>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 nmap <C-w>pl SyntasticCheck <pylint>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" markdown
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LaTeX math
+" let g:vim_markdown_math=1
+" Highlight YAML frontmatter as used by Jekyll:
+let g:vim_markdown_frontmatter=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
