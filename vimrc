@@ -5,6 +5,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 Helptags
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -22,17 +23,13 @@ filetype indent on
 " switch syntax highlighting on
 syntax on
 " set color themes
-colorscheme desert
-" syntax enable
-" set background=light
-" colorscheme solarized
-
-
-" enable all Python syntax highlighting features
-" let python_highlight_all = 1
+"colorscheme desert
+syntax enable
+set background=dark
+colorscheme solarized
 
 " Set to auto read when a file is changed from the outside
-"set autoread
+" set autoread
 
 " save when changing buffer
 set autowrite
@@ -218,7 +215,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " show buffer number
 let g:airline#extensions#tabline#buffer_nr_show = 1
 " set theme
-let g:airline_theme='wombat'
+" let g:airline_theme='wombat'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -259,6 +256,12 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 " set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Conque Shell
+" open a bash shell
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>bs :ConqueTermSplit bash<CR><ESC>:resize 7<CR><ESC>i
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
