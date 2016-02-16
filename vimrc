@@ -236,6 +236,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+" 打开语法检查
 nnoremap <C-w>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 nmap <C-w>pl SyntasticCheck <pylint>
 
@@ -259,6 +260,11 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 " set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" c-support, c-vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:C_CFlags = '-std=c++11 -Wall -g -O0 -c'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
