@@ -273,10 +273,6 @@ let g:C_CFlags = '-std=c++11 -Wall -g -O0 -c'
 " open a bash shell
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>bs :ConqueTermSplit bash<CR><ESC>:resize 7<CR><ESC>i
-"nnoremap <leader>y :let @"=@".getline('.')<CR>
-let @"=@".getline('.')
-
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
