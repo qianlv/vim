@@ -190,6 +190,11 @@ nmap <C-@>f :scs find f <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@>i :scs find i <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
 
+vmap <C-c> "ay
+nmap <C-c> "ayy
+vmap <C-y> "Ay
+nmap <C-y> "Ayy
+
 """"""""""""""""""""""""""""""
 " NERDTree
 """"""""""""""""""""""""""""""
@@ -268,6 +273,10 @@ let g:C_CFlags = '-std=c++11 -Wall -g -O0 -c'
 " open a bash shell
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>bs :ConqueTermSplit bash<CR><ESC>:resize 7<CR><ESC>i
+"nnoremap <leader>y :let @"=@".getline('.')<CR>
+let @"=@".getline('.')
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
