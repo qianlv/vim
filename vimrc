@@ -80,6 +80,9 @@ set laststatus=2    " always show the statue line
 " line number
 set number
 
+" 高亮显示匹配的尖括号
+set mps+=<:>
+
 """"""""""""""""""""""""""""""
 " Indent
 """"""""""""""""""""""""""""""
