@@ -55,6 +55,6 @@
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = git@github.com:tpope/vim-surround.git
-[submodule "bundle/vim-conque-shell"]
-	path = bundle/vim-conque-shell
-	url = git@github.com:basepi/vim-conque.git
+[submodule "bundle/fcitx-vim"]
+	path = bundle/fcitx-vim
+	url = git@github.com:CodeFalling/fcitx-vim-osx.git
