@@ -2,3 +2,5 @@
 bundle/
 !bundle/Vundle.vim
 
+*.pyc
+*.bak
