@@ -1,9 +1,57 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Bundle "tpope/vim-pathogen"
+Bundle "scrooloose/nerdtree"
+Bundle "scrooloose/nerdcommenter"
+Bundle "scrooloose/syntastic"
+Bundle "uarun/vim-protobuf"
+Bundle "plasticboy/vim-markdown"
+Bundle "godlygeek/tabular"
+Bundle "greyblake/vim-preview"
+Bundle "nathanaelkane/vim-indent-guides"
+Bundle "bling/vim-airline"
+Bundle "altercation/vim-colors-solarized"
+Bundle "kien/ctrlp.vim"
+Bundle "CodeFalling/fcitx-vim-osx"
+Bundle "tpope/vim-surround"
+Bundle "basepi/vim-conque"
+Bundle "majutsushi/tagbar"
+
+Bundle "c.vim"
+Bundle "grep.vim"
+Bundle "vcscommand.vim"
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 """"""""""""""""""""""""""""""
 " Pathogen
 """"""""""""""""""""""""""""""
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-Helptags
+"runtime bundle/vim-pathogen/autoload/pathogen.vim
+"call pathogen#infect()
+"Helptags
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -22,11 +70,18 @@ filetype indent on
 
 " switch syntax highlighting on
 syntax on
-" set color themes
-"colorscheme desert
 syntax enable
+
+" let g:solarized_termcolors=256
+
 set background=dark
-colorscheme solarized
+
+" set color
+set t_Co=256  
+
+"set color themes
+"colorscheme solarized
+colorscheme desert
 
 " Set to auto read when a file is changed from the outside
 " set autoread
@@ -105,7 +160,7 @@ set autoindent
 set smartindent
 
 " show a visual line under the cursor's current line 
-set cursorline
+" set cursorline
 
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
@@ -211,8 +266,6 @@ let NERDTreeWinPos = "left"
 """"""""""""""""""""""""""""""
 " vim-airline
 """"""""""""""""""""""""""""""
-" set color
-set t_Co=256  
 " set status line
 set laststatus=2
 " enable powerline-fonts
@@ -225,9 +278,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 " show buffer number
 let g:airline#extensions#tabline#buffer_nr_show = 1
-" set theme
-" let g:airline_theme='wombat'
-
+"set theme
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntastic
