@@ -26,6 +26,7 @@ Bundle "CodeFalling/fcitx-vim-osx"
 Bundle "tpope/vim-surround"
 Bundle "basepi/vim-conque"
 Bundle "majutsushi/tagbar"
+Bundle 'valloric/YouCompleteMe'
 
 Bundle "c.vim"
 Bundle "grep.vim"
@@ -52,7 +53,6 @@ filetype plugin indent on    " required
 "runtime bundle/vim-pathogen/autoload/pathogen.vim
 "call pathogen#infect()
 "Helptags
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
@@ -199,6 +199,11 @@ cmap w8 w ++enc=utf-8
 nmap rn <esc>yiwjP<C-a>
 " external command's results displays in new windows
 " cmap nx! new | 0read 
+
+""""""""""""""""""""""""""""""
+" YouCompleteMe
+""""""""""""""""""""""""""""""
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 """"""""""""""""""""""""""""""
 " Tagbar
