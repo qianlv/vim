@@ -25,8 +25,12 @@ Bundle "kien/ctrlp.vim"
 Bundle "CodeFalling/fcitx-vim-osx"
 Bundle "tpope/vim-surround"
 Bundle "basepi/vim-conque"
-" Bundle "majutsushi/tagbar"
+Bundle "majutsushi/tagbar"
 Bundle 'valloric/YouCompleteMe'
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
+Bundle 'mbbill/undotree'
+Bundle 'matze/vim-move'
 
 Bundle "c.vim"
 Bundle "grep.vim"
@@ -200,6 +204,37 @@ nmap rn <esc>yiwjP<C-a>
 " external command's results displays in new windows
 " cmap nx! new | 0read 
 
+" for tabular 
+nmap <Leader>a& :Tabularize /&<CR>
+vmap <Leader>a& :Tabularize /&<CR>
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
+nmap <Leader>a:: :Tabularize /:\zs<CR>
+vmap <Leader>a:: :Tabularize /:\zs<CR>
+nmap <Leader>a, :Tabularize /,<CR>
+vmap <Leader>a, :Tabularize /,<CR>
+nmap <Leader>a,, :Tabularize /,\zs<CR>
+vmap <Leader>a,, :Tabularize /,\zs<CR>
+nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+
+
+""""""""""""""""""""""""""""""
+" undotree
+""""""""""""""""""""""""""""""
+let g:move_key_modifier = 'C'
+
+""""""""""""""""""""""""""""""
+" undotree
+""""""""""""""""""""""""""""""
+nnoremap <Leader>u :UndotreeToggle<cr>
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
+
 """"""""""""""""""""""""""""""
 " YouCompleteMe
 """"""""""""""""""""""""""""""
@@ -223,7 +258,7 @@ let g:ycm_cache_omnifunc=0
 " 语法关键字补全           
 let g:ycm_seed_identifiers_with_syntax=1
 " 修改对C函数的补全快捷键，默认是CTRL + space，修改为ALT + ;
-"let g:ycm_key_invoke_completion = '<M-;>'
+" let g:ycm_key_invoke_completion = "<c->"
 " 设置转到定义处的快捷键为，这个功能非常赞
 " 声明
 " nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
@@ -232,6 +267,21 @@ let g:ycm_seed_identifiers_with_syntax=1
 " 前面两者结合
 " nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap<C-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR>
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+"""""""""""""""""""""""""""
+" Snippets
+"""""""""""""""""""""""""""
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 """"""""""""""""""""""""""""""
 " Tagbar
