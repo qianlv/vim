@@ -32,6 +32,7 @@ Bundle 'mbbill/undotree'
 Bundle 'matze/vim-move'
 Bundle 'kshenoy/vim-signature'
 Bundle 'flazz/vim-colorschemes'
+Bundle "vim-scripts/cscope.vim"
 
 Bundle "c.vim"
 Bundle "grep.vim"
@@ -85,7 +86,8 @@ set t_Co=256
 " colorscheme solarized
 " colorscheme desert
 " colorscheme github
-colorscheme onedark
+" colorscheme onedark
+colorscheme kolor
 
 " Set to auto read when a file is changed from the outside
 " set autoread
@@ -178,15 +180,13 @@ set termencoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " map shortcut
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <SPACE> /
+nmap <Tab> gt
 
 cmap svn SVN
 cmap w!! w !sudo tee %
 cmap w8 w ++enc=utf-8
 " 0 -> 1 -> 2 -> 3
 nmap <leade>rn <esc>yiwjP<C-a>
-" external command's results displays in new windows
-" cmap nx! new | 0read 
 
 " 开启或关闭 paste 模式
 "nmap <leader>p :setlocal paste! paste?<cr>
@@ -207,7 +207,6 @@ nmap <Leader>a,, :Tabularize /,\zs<CR>
 vmap <Leader>a,, :Tabularize /,\zs<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-
 
 """"""""""""""""""""""""""""""
 " undotree
@@ -301,9 +300,21 @@ endif " has(autocmd)
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn'
 let Grep_Cygwin_Find = 1
 
-""""""""""""""""""""""""""""""
-" CScorpe
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" cscope setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"if has("cscope")
+"  set csprg=/usr/local/bin/cscope
+"  set csto=1
+"  set cst
+"  set nocsverb
+"  " add any database in current directory
+"  if filereadable("cscope.out")
+"      cs add cscope.out
+"  endif
+"  set csverb
+"endif
+
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
@@ -340,19 +351,24 @@ let NERDTreeWinPos = "left"
 " set status line
 set laststatus=2
 " enable powerline-fonts
-"let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 " enable tabline
 " let g:airline#extensions#tabline#enabled = 1
-" set left separator
+" set tabline separator
 let g:airline#extensions#tabline#left_sep = '>'
-let g:airline_right_sep='<'
+" set airline separator
+let g:airline_left_sep = '>'
+let g:airline_right_sep = '<'
+
 " set left separator which are not editting
 let g:airline#extensions#tabline#left_alt_sep = '|'
 " show buffer number
 let g:airline#extensions#tabline#buffer_nr_show = 1
+" enable/disable syntastic integration 
+let g:airline#extensions#syntastic#enabled = 1
 "set theme
-let g:airline_theme='tomorrow'
-" set airlinetheme='tomorrow'
+"let g:airline_theme='tomorrow'
+let g:airline_theme='kolor'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntastic
