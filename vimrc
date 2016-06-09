@@ -20,17 +20,18 @@ Bundle "godlygeek/tabular"
 Bundle "greyblake/vim-preview"
 Bundle "nathanaelkane/vim-indent-guides"
 Bundle "bling/vim-airline"
-Bundle "altercation/vim-colors-solarized"
+Bundle "vim-airline/vim-airline-themes"
 Bundle "kien/ctrlp.vim"
 Bundle "CodeFalling/fcitx-vim-osx"
 Bundle "tpope/vim-surround"
-Bundle "basepi/vim-conque"
 Bundle "majutsushi/tagbar"
 Bundle 'valloric/YouCompleteMe'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 Bundle 'mbbill/undotree'
 Bundle 'matze/vim-move'
+Bundle 'kshenoy/vim-signature'
+Bundle 'flazz/vim-colorschemes'
 
 Bundle "c.vim"
 Bundle "grep.vim"
@@ -76,16 +77,15 @@ filetype indent on
 syntax on
 syntax enable
 
-" let g:solarized_termcolors=256
-
-set background=dark
-
 " set color
 set t_Co=256  
+"set background=light
 
 "set color themes
-"colorscheme solarized
-colorscheme desert
+" colorscheme solarized
+" colorscheme desert
+" colorscheme github
+colorscheme onedark
 
 " Set to auto read when a file is changed from the outside
 " set autoread
@@ -166,14 +166,6 @@ set smartindent
 " show a visual line under the cursor's current line 
 " set cursorline
 
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-hi IndentGuidesOdd  ctermbg=white
-hi IndentGuidesEven ctermbg=lightgrey
-let g:indent_guides_guide_size = 1 
-
-
 """"""""""""""""""""""""""""""
 " Encoding
 """"""""""""""""""""""""""""""
@@ -186,23 +178,19 @@ set termencoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " map shortcut
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" cpp->h or h->cpp
-nmap <F8> :A<CR>
-
 nmap <SPACE> /
-
-"nmap <right> <esc><c-w>l
-"nmap <left> <esc><c-w>h
-"nmap <up> <esc><c-w>k
-"nmap <down> <esc><c-w>j
 
 cmap svn SVN
 cmap w!! w !sudo tee %
 cmap w8 w ++enc=utf-8
 " 0 -> 1 -> 2 -> 3
-nmap rn <esc>yiwjP<C-a>
+nmap <leade>rn <esc>yiwjP<C-a>
 " external command's results displays in new windows
 " cmap nx! new | 0read 
+
+" 开启或关闭 paste 模式
+"nmap <leader>p :setlocal paste! paste?<cr>
+set pastetoggle=<F10>
 
 " for tabular 
 nmap <Leader>a& :Tabularize /&<CR>
@@ -258,7 +246,7 @@ let g:ycm_cache_omnifunc=0
 " 语法关键字补全           
 let g:ycm_seed_identifiers_with_syntax=1
 " 修改对C函数的补全快捷键，默认是CTRL + space，修改为ALT + ;
-" let g:ycm_key_invoke_completion = "<c->"
+let g:ycm_key_invoke_completion = "<c-b>"
 " 设置转到定义处的快捷键为，这个功能非常赞
 " 声明
 " nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
@@ -356,12 +344,15 @@ set laststatus=2
 " enable tabline
 " let g:airline#extensions#tabline#enabled = 1
 " set left separator
-let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_sep = '>'
+let g:airline_right_sep='<'
 " set left separator which are not editting
 let g:airline#extensions#tabline#left_alt_sep = '|'
 " show buffer number
 let g:airline#extensions#tabline#buffer_nr_show = 1
 "set theme
+let g:airline_theme='tomorrow'
+" set airlinetheme='tomorrow'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntastic
@@ -407,12 +398,6 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 " c-support, c-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:C_CFlags = '-std=c++11 -Wall -g -O0 -c'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Conque Shell
-" open a bash shell
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>bs :ConqueTermSplit bash<CR><ESC>:resize 7<CR><ESC>i
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
