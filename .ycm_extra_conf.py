@@ -24,7 +24,7 @@ flags = [
 # For a C project, you would set this to something like 'c99' instead of
 # 'c++11'.
 '-std=c++11',
-'-stdlib=libc++',
+# '-stdlib=libc++',
 # ...and the same thing goes for the magic -x option which specifies the
 # language that the files to be compiled are written in. This is mostly
 # relevant for c++ headers.
@@ -32,7 +32,7 @@ flags = [
 '-x', 'c++',
 '-isystm', '/usr/include',
 '-isystm', '/usr/include/c++/5',
-'-isystm', '/usr/include', '/usr/include/x86_64-linux-gnu/c++/5',
+'-isystm', '/usr/include/x86_64-linux-gnu/c++/5',
 '-isystm', '/usr/include/boost',
 '-isystm', '/usr/local/include',
 '-I', './',
