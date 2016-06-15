@@ -147,6 +147,9 @@ set mps+=<:>
 " 按esc自动去除高亮
 nnoremap <esc> :nohl<cr>
 
+" <leader> 键映射修改
+let mapleader=";"
+
 """"""""""""""""""""""""""""""
 " Indent
 """"""""""""""""""""""""""""""
@@ -180,7 +183,8 @@ set termencoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " map shortcut
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <Tab> gt
+map <C-H> gT
+map <C-L> gt
 
 cmap svn SVN
 cmap w!! w !sudo tee %
@@ -314,6 +318,8 @@ let Grep_Cygwin_Find = 1
 "  endif
 "  set csverb
 "endif
+" 显示cscope的结果
+set cscopequickfix=s+,c+,d+,i+,t+,e+
 
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
@@ -343,6 +349,7 @@ nmap <C-y> "Ayy
 """"""""""""""""""""""""""""""
 let NERDChristmasTree = 1
 let NERDTreeWinPos = "left"
+nmap <leader>n :NERDTree<cr>
 
 
 """"""""""""""""""""""""""""""
@@ -356,6 +363,7 @@ let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#enabled = 1
 " set tabline separator
 let g:airline#extensions#tabline#left_sep = '>'
+let g:airline#extensions#tabline#right_sep = '<'
 " set airline separator
 let g:airline_left_sep = '>'
 let g:airline_right_sep = '<'
@@ -508,3 +516,4 @@ function! FuncBufReadPost()
     call FuncCsAdd()
     call FuncTags()
 endfunction
+
