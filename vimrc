@@ -33,6 +33,11 @@ Bundle 'matze/vim-move'
 Bundle 'kshenoy/vim-signature'
 Bundle 'flazz/vim-colorschemes'
 Bundle "vim-scripts/cscope.vim"
+Bundle "xolox/vim-lua-ftplugin"
+Bundle "xolox/vim-misc"
+"Bundle "xolox/vim-lua-inspect"
+"Bundle "Shougo/neocomplete.vim"
+
 
 Bundle "c.vim"
 Bundle "grep.vim"
@@ -52,13 +57,6 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-
-""""""""""""""""""""""""""""""
-" Pathogen
-""""""""""""""""""""""""""""""
-"runtime bundle/vim-pathogen/autoload/pathogen.vim
-"call pathogen#infect()
-"Helptags
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
@@ -84,10 +82,10 @@ set t_Co=256
 
 "set color themes
 " colorscheme solarized
-" colorscheme desert
+colorscheme desert
 " colorscheme github
 " colorscheme onedark
-colorscheme kolor
+" colorscheme kolor
 
 " Set to auto read when a file is changed from the outside
 " set autoread
@@ -143,12 +141,13 @@ set number
 
 " 高亮显示匹配的尖括号
 set mps+=<:>
+set mps+={:}
 
 " 按esc自动去除高亮
 nnoremap <esc> :nohl<cr>
 
 " <leader> 键映射修改
-let mapleader=";"
+" let mapleader=";"
 
 """"""""""""""""""""""""""""""
 " Indent
@@ -195,7 +194,6 @@ nmap <leade>rn <esc>yiwjP<C-a>
 " 开启或关闭 paste 模式
 "nmap <leader>p :setlocal paste! paste?<cr>
 set pastetoggle=<F10>
-
 " for tabular 
 nmap <Leader>a& :Tabularize /&<CR>
 vmap <Leader>a& :Tabularize /&<CR>
@@ -284,7 +282,7 @@ nmap <leader>t :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
     "auto read vimrc when it refreshed
-    autocmd! bufwritepost .vimrc source ~/.vimrc
+    autocmd! bufwritepost ~/.vimrc source ~/.vimrc
 
     "自动回到上次打开的位置
     autocmd! BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
@@ -303,6 +301,8 @@ endif " has(autocmd)
 """"""""""""""""""""""""""""""
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn'
 let Grep_Cygwin_Find = 1
+nnoremap gr :Grep -I <cword> *<CR>
+nnoremap grr :Rgrep -I <cword> *<CR><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting
@@ -388,14 +388,15 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height=7
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_lua_checkers = ['luacheck']
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 " 打开语法检查
 nnoremap <C-w>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
-nmap <C-w>pl SyntasticCheck <pylint>
+"nmap <C-w>pl SyntasticCheck <pylint>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " markdown
@@ -422,6 +423,18 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 " c-support, c-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:C_CFlags = '-std=c++11 -Wall -g -O0 -c'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-lua-ftplugin
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" This sets the default value for all buffers.
+let g:lua_compiler_name = '/usr/local/bin/luajit-2.1.0-beta2'
+let g:lua_path = './?.lua;/usr/local/share/luajit-2.1.0-beta2/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua'
+let g:lua_check_syntax = 0 " done via syntastic
+let g:lua_define_omnifunc = 1 " must be enabled also (g:lua_complete_omni=1, but crashes Vim!)
+let g:lua_complete_library = 1 " interferes with YouCompleteMe
+let g:lua_complete_dynamic = 1 " interferes with YouCompleteMe
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
@@ -517,3 +530,40 @@ function! FuncBufReadPost()
     call FuncTags()
 endfunction
 
+" 标签页只显示文件名
+set tabline=%!MyTabLine()
+
+function! MyTabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    " select the highlighting
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+
+    " set the tab page number (for mouse clicks)
+    let s .= '%' . (i + 1) . 'T' 
+
+    " the label is made by MyTabLabel()
+    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+  endfor
+
+  " after the last tab fill with TabLineFill and reset tab page nr
+  let s .= '%#TabLineFill#%T'
+
+  " right-align the label to close the current tab page
+  if tabpagenr('$') > 1 
+    let s .= '%=%#TabLine#%999Xclose'
+  endif
+
+  return s
+endfunction
+
+function! MyTabLabel(n)
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+  let label =  bufname(buflist[winnr - 1]) 
+  return fnamemodify(label, ":t") 
+endfunction
