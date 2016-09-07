@@ -32,7 +32,8 @@ Bundle 'mbbill/undotree'
 Bundle 'matze/vim-move'
 Bundle 'kshenoy/vim-signature'
 Bundle 'flazz/vim-colorschemes'
-Bundle "vim-scripts/cscope.vim"
+Bundle 'vim-scripts/cscope.vim'
+Bundle 'davidhalter/jedi-vim'
 
 Bundle "c.vim"
 Bundle "grep.vim"
