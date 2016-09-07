@@ -209,13 +209,16 @@ nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
 """"""""""""""""""""""""""""""
-" undotree
+" nerdcommenter
 """"""""""""""""""""""""""""""
-let g:move_key_modifier = 'C'
+" 注释的时候自动加个空格, 强迫症必配
+let g:NERDSpaceDelims=1
 
 """"""""""""""""""""""""""""""
 " undotree
 """"""""""""""""""""""""""""""
+let g:move_key_modifier = 'C'
+
 nnoremap <Leader>u :UndotreeToggle<cr>
 if has("persistent_undo")
     set undodir=~/.undodir/
@@ -426,12 +429,16 @@ let g:C_CFlags = '-std=c++11 -Wall -g -O0 -c'
 " vim-lua-ftplugin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " This sets the default value for all buffers.
-let g:lua_compiler_name = '/usr/local/bin/luajit-2.1.0-beta2'
-let g:lua_path = './?.lua;/usr/local/share/luajit-2.1.0-beta2/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua'
-let g:lua_check_syntax = 0 " done via syntastic
+let g:lua_compiler_name = '/usr/bin/luac'
+" let g:lua_path = './?.lua;/usr/local/share/luajit-2.1.0-beta2/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua'
+let g:lua_check_syntax = 1 " done via syntastic
 let g:lua_define_omnifunc = 1 " must be enabled also (g:lua_complete_omni=1, but crashes Vim!)
-let g:lua_complete_library = 1 " interferes with YouCompleteMe
-let g:lua_complete_dynamic = 1 " interferes with YouCompleteMe
+let g:lua_complete_library = 0 " interferes with YouCompleteMe
+let g:lua_complete_dynamic = 0 " interferes with YouCompleteMe
+let g:lua_complete_omni = 1     " Disabled by default. Likely to crash Vim!
+let g:lua_omni_blacklist = ['pl\.strict', 'lgi\..']
+let g:lua_define_completion_mappings = 0
+let g:lua_internal = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
