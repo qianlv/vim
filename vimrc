@@ -40,6 +40,7 @@ Bundle "xolox/vim-misc"
 Bundle "c.vim"
 Bundle "grep.vim"
 Bundle "vcscommand.vim"
+Bundle 'jvirtanen/vim-octave'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -68,7 +69,6 @@ set history=700
 "Enable filetype plugin
 filetype plugin on
 filetype indent on
-
 
 " switch syntax highlighting on
 syntax on
@@ -261,6 +261,8 @@ nnoremap<C-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>"
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
+" python3
+let g:ycm_python_binary_path = '/usr/local/bin/python3'
 
 """""""""""""""""""""""""""
 " Snippets
@@ -424,6 +426,7 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 " c-support, c-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:C_CFlags = '-std=c++11 -Wall -g -O0 -c'
+let g:C_Libs = '-lpthread'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-lua-ftplugin
@@ -440,6 +443,18 @@ let g:lua_omni_blacklist = ['pl\.strict', 'lgi\..']
 let g:lua_define_completion_mappings = 0
 let g:lua_internal = 0
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" jedi-vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:jedi#force_py_version = 3 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Octave-vim syntax 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup filetypedetect 
+    au! BufRead,BufNewFile *.m,*.oct set filetype=octave 
+augroup END 
+autocmd FileType octave setlocal keywordprg=info\ octave\ --vi-keys\ --index-search
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
