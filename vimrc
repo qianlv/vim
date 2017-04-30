@@ -10,37 +10,40 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Bundle "tpope/vim-pathogen"
-Bundle "scrooloose/nerdtree"
-Bundle "scrooloose/nerdcommenter"
-Bundle "scrooloose/syntastic"
-Bundle "uarun/vim-protobuf"
-Bundle "plasticboy/vim-markdown"
-Bundle "godlygeek/tabular"
-Bundle "greyblake/vim-preview"
-Bundle "nathanaelkane/vim-indent-guides"
-Bundle "bling/vim-airline"
-Bundle "vim-airline/vim-airline-themes"
-Bundle "kien/ctrlp.vim"
-Bundle "CodeFalling/fcitx-vim-osx"
-Bundle "tpope/vim-surround"
-Bundle "majutsushi/tagbar"
-Bundle 'valloric/YouCompleteMe'
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
-Bundle 'mbbill/undotree'
-Bundle 'matze/vim-move'
-Bundle 'kshenoy/vim-signature'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'vim-scripts/cscope.vim'
-Bundle 'davidhalter/jedi-vim'
-Bundle "xolox/vim-lua-ftplugin"
-Bundle "xolox/vim-misc"
+Plugin 'tpope/vim-pathogen'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'w0rp/ale'
+Plugin 'uarun/vim-protobuf'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'greyblake/vim-preview'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'kien/ctrlp.vim'
+Plugin 'CodeFalling/fcitx-vim-osx'
+Plugin 'tpope/vim-surround'
+Plugin 'majutsushi/tagbar'
+Plugin 'valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'mbbill/undotree'
+Plugin 'matze/vim-move'
+Plugin 'kshenoy/vim-signature'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'iamcco/mathjax-support-for-mkdp'
+Plugin 'iamcco/markdown-preview.vim'
+Plugin 'jvirtanen/vim-octave'
+Plugin 'terryma/vim-expand-region'
+Plugin 'jez/vim-better-sml'
+Plugin 'Yggdroot/indentLine'
+Plugin 'derekwyatt/vim-scala'
 
-Bundle "c.vim"
-Bundle "grep.vim"
-Bundle "vcscommand.vim"
-Bundle 'jvirtanen/vim-octave'
+Plugin 'c.vim'
+Plugin 'grep.vim'
+Plugin 'vcscommand.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -76,7 +79,7 @@ syntax enable
 
 " set color
 set t_Co=256  
-"set background=light
+" set background=dark
 
 "set color themes
 " colorscheme solarized
@@ -140,12 +143,13 @@ set number
 " 高亮显示匹配的尖括号
 set mps+=<:>
 set mps+={:}
+set mps+=$:$
 
 " 按esc自动去除高亮
 nnoremap <esc> :nohl<cr>
 
 " <leader> 键映射修改
-" let mapleader=";"
+let mapleader=";"
 
 """"""""""""""""""""""""""""""
 " Indent
@@ -187,11 +191,12 @@ cmap svn SVN
 cmap w!! w !sudo tee %
 cmap w8 w ++enc=utf-8
 " 0 -> 1 -> 2 -> 3
-nmap <leade>rn <esc>yiwjP<C-a>
+" nmap <leade>rn <esc>yiwjP<C-a>
 
 " 开启或关闭 paste 模式
 "nmap <leader>p :setlocal paste! paste?<cr>
-set pastetoggle=<F10>
+set pastetoggle=<Leader>ps
+
 " for tabular 
 nmap <Leader>a& :Tabularize /&<CR>
 vmap <Leader>a& :Tabularize /&<CR>
@@ -226,9 +231,16 @@ if has("persistent_undo")
 endif
 
 """"""""""""""""""""""""""""""
+" IndentLine
+""""""""""""""""""""""""""""""
+let g:indentLine_char = "┆"
+let g:indentLine_enabled = 1
+let g:autopep8_disable_show_diff=1
+
+""""""""""""""""""""""""""""""
 " YouCompleteMe
 """"""""""""""""""""""""""""""
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+" let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 " 补全功能在注释中同样有效
 let g:ycm_complete_in_comments=1
 " 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
@@ -244,7 +256,7 @@ inoremap <leader>; <C-x><C-o>
 " 从第一个键入字符就开始罗列匹配项
 let g:ycm_min_num_of_chars_for_completion=2
 " 禁止缓存匹配项，每次都重新生成匹配项
-let g:ycm_cache_omnifunc=0
+let g:ycm_cache_omnifunc=1
 " 语法关键字补全           
 let g:ycm_seed_identifiers_with_syntax=1
 " 修改对C函数的补全快捷键，默认是CTRL + space，修改为ALT + ;
@@ -261,8 +273,21 @@ nnoremap<C-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>"
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
-" python3
-let g:ycm_python_binary_path = '/usr/local/bin/python3'
+" python version 
+let g:ycm_python_binary_path = '/usr/bin/python2'
+" let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'qf' : 1,
+      \ 'notes' : 1,
+      \ 'markdown' : 1,
+      \ 'unite' : 1,
+      \ 'text' : 1,
+      \ 'vimwiki' : 1,
+      \ 'gitcommit' : 1,
+      \}
+" for eclimd
+let g:EclimCompletionMethod = 'omnifunc'
 
 """""""""""""""""""""""""""
 " Snippets
@@ -307,46 +332,6 @@ let Grep_Cygwin_Find = 1
 nnoremap gr :Grep -I <cword> *<CR>
 nnoremap grr :Rgrep -I <cword> *<CR><CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" cscope setting
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"if has("cscope")
-"  set csprg=/usr/local/bin/cscope
-"  set csto=1
-"  set cst
-"  set nocsverb
-"  " add any database in current directory
-"  if filereadable("cscope.out")
-"      cs add cscope.out
-"  endif
-"  set csverb
-"endif
-" 显示cscope的结果
-set cscopequickfix=s+,c+,d+,i+,t+,e+
-
-nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>f :cs find f <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>i :cs find i <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-
-nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>f :scs find f <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>i :scs find i <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
-
-vmap <C-c> "ay
-nmap <C-c> "ayy
-vmap <C-y> "Ay
-nmap <C-y> "Ayy
-
 """"""""""""""""""""""""""""""
 " NERDTree
 """"""""""""""""""""""""""""""
@@ -382,24 +367,13 @@ let g:airline#extensions#syntastic#enabled = 1
 let g:airline_theme='kolor'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" syntastic
+" ale
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_loc_list_height=7
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_lua_checkers = ['luacheck']
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-" 打开语法检查
-nnoremap <C-w>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
-"nmap <C-w>pl SyntasticCheck <pylint>
+" let g:ale_linters = {'Python': ['flake8']}
+" 保持侧边栏可见
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " markdown
@@ -429,24 +403,9 @@ let g:C_CFlags = '-std=c++11 -Wall -g -O0 -c'
 let g:C_Libs = '-lpthread'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-lua-ftplugin
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" This sets the default value for all buffers.
-let g:lua_compiler_name = '/usr/bin/luac'
-" let g:lua_path = './?.lua;/usr/local/share/luajit-2.1.0-beta2/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua'
-let g:lua_check_syntax = 1 " done via syntastic
-let g:lua_define_omnifunc = 1 " must be enabled also (g:lua_complete_omni=1, but crashes Vim!)
-let g:lua_complete_library = 0 " interferes with YouCompleteMe
-let g:lua_complete_dynamic = 0 " interferes with YouCompleteMe
-let g:lua_complete_omni = 1     " Disabled by default. Likely to crash Vim!
-let g:lua_omni_blacklist = ['pl\.strict', 'lgi\..']
-let g:lua_define_completion_mappings = 0
-let g:lua_internal = 0
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " jedi-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:jedi#force_py_version = 3 
+" let g:jedi#force_py_version = 2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Octave-vim syntax 
@@ -455,6 +414,16 @@ augroup filetypedetect
     au! BufRead,BufNewFile *.m,*.oct set filetype=octave 
 augroup END 
 autocmd FileType octave setlocal keywordprg=info\ octave\ --vi-keys\ --index-search
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-scala
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd BufRead,BufNewFile *.sc set filetype=scala
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" markdown-preview
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <leader>md <Plug>MarkdownPreview        " for normal mode
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
@@ -587,3 +556,6 @@ function! MyTabLabel(n)
   let label =  bufname(buflist[winnr - 1]) 
   return fnamemodify(label, ":t") 
 endfunction
+augroup filetype
+    autocmd! BufRead,BufNewFile BUILD set filetype=blade
+augroup end
