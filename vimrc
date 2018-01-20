@@ -16,8 +16,6 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'w0rp/ale'
 Plugin 'uarun/vim-protobuf'
 Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'greyblake/vim-preview'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -32,24 +30,26 @@ Plugin 'mbbill/undotree'
 Plugin 'matze/vim-move'
 Plugin 'kshenoy/vim-signature'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'iamcco/mathjax-support-for-mkdp'
-Plugin 'iamcco/markdown-preview.vim'
+" Plugin 'davidhalter/jedi-vim'
+Plugin 'klen/python-mode'
 Plugin 'jvirtanen/vim-octave'
 Plugin 'terryma/vim-expand-region'
 Plugin 'jez/vim-better-sml'
 Plugin 'Yggdroot/indentLine'
-Plugin 'derekwyatt/vim-scala'
+Plugin 'zonyitoo/typhoon-blade.vim'
+" Plugin 'derekwyatt/vim-scala'
+" Plugin 'wlangstroth/vim-racket'
+" Plugin 'MicahElliott/vrod'
+Plugin 'fatih/vim-go'
 
 Plugin 'c.vim'
 Plugin 'grep.vim'
-Plugin 'vcscommand.vim'
+" Plugin 'vcscommand.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -67,7 +67,7 @@ filetype plugin indent on    " required
 set nocompatible
 
 " Sets how many lines of history VIM has to remember
-set history=700
+set history=1000
 
 "Enable filetype plugin
 filetype plugin on
@@ -89,7 +89,7 @@ colorscheme desert
 " colorscheme kolor
 
 " Set to auto read when a file is changed from the outside
-" set autoread
+set autoread
 
 " save when changing buffer
 set autowrite
@@ -240,7 +240,7 @@ let g:autopep8_disable_show_diff=1
 """"""""""""""""""""""""""""""
 " YouCompleteMe
 """"""""""""""""""""""""""""""
-" let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 " 补全功能在注释中同样有效
 let g:ycm_complete_in_comments=1
 " 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
@@ -252,7 +252,7 @@ let g:ycm_collect_identifiers_from_tags_files=1
 " YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
 inoremap <leader>; <C-x><C-o>
 " 补全内容不以分割子窗口形式出现，只显示补全列表
-" set completeopt-=preview
+set completeopt-=preview
 " 从第一个键入字符就开始罗列匹配项
 let g:ycm_min_num_of_chars_for_completion=2
 " 禁止缓存匹配项，每次都重新生成匹配项
@@ -274,8 +274,8 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 " python version 
-let g:ycm_python_binary_path = '/usr/bin/python2'
-" let g:ycm_python_binary_path = '/usr/bin/python3'
+" let g:ycm_python_binary_path = '/usr/bin/python2'
+let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_filetype_blacklist = {
       \ 'tagbar' : 1,
       \ 'qf' : 1,
@@ -318,6 +318,8 @@ if has("autocmd")
     "源文件打开之后的处理，主要是自动搜索cscope和tags数据文件
     "autocmd! BufReadPost *.{cc,cpp,h} call FuncBufReadPost()
     autocmd! VimEnter *.{cc,cpp,h} call FuncBufReadPost()
+
+    au BufReadPost *.rkt,*.rktl set filetype=racket
 
 endif " has(autocmd)
 
@@ -372,7 +374,7 @@ let g:airline_theme='kolor'
 " let g:ale_linters = {'Python': ['flake8']}
 " 保持侧边栏可见
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = '>>'
+" let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -424,6 +426,17 @@ autocmd BufRead,BufNewFile *.sc set filetype=scala
 " markdown-preview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <leader>md <Plug>MarkdownPreview        " for normal mode
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" for go
+nnoremap <leader>gi :GoImports<cr>
+
+" for python mode
+" You can't have two completions plugins working at the same time
+" YouCompleteMe and python mode
+let g:pymode_rope_completion = 0
+let g:pymode_options_colorcolumn = 0
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my functions
