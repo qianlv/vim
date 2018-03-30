@@ -94,6 +94,9 @@ set autoread
 " save when changing buffer
 set autowrite
 
+" forbiden mouse
+set mouse=
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Interface & Display
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -252,7 +255,9 @@ let g:ycm_collect_identifiers_from_tags_files=1
 " YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
 inoremap <leader>; <C-x><C-o>
 " 补全内容不以分割子窗口形式出现，只显示补全列表
-set completeopt-=preview
+" set completeopt-=preview
+" set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
 " 从第一个键入字符就开始罗列匹配项
 let g:ycm_min_num_of_chars_for_completion=2
 " 禁止缓存匹配项，每次都重新生成匹配项
@@ -274,8 +279,8 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 " python version 
-" let g:ycm_python_binary_path = '/usr/bin/python2'
-let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_python_binary_path = '/usr/bin/python'
+" let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_filetype_blacklist = {
       \ 'tagbar' : 1,
       \ 'qf' : 1,
@@ -376,6 +381,7 @@ let g:airline_theme='kolor'
 let g:ale_sign_column_always = 1
 " let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
+let g:ale_python_flake8_options = '--ignore=E501'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " markdown
@@ -407,7 +413,6 @@ let g:C_Libs = '-lpthread'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " jedi-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:jedi#force_py_version = 2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Octave-vim syntax 
@@ -436,6 +441,8 @@ nnoremap <leader>gi :GoImports<cr>
 " YouCompleteMe and python mode
 let g:pymode_rope_completion = 0
 let g:pymode_options_colorcolumn = 0
+let g:pymode_lint_cwindow = 0
+let g:pymode_lint_on_write = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
